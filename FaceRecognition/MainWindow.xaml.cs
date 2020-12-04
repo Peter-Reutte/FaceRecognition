@@ -88,15 +88,19 @@ namespace FaceRecognition
 
         private void ButtonPhoto_Click(object sender, RoutedEventArgs e)
         {
-            const string pathImageFolder = @"C:\Users\FAS\"; //@"D:\\Photo\";
-            string pathToImage = string.Format("{0}{1}.png", pathImageFolder, Guid.NewGuid());
+            CheckPhoto checkPhoto = new CheckPhoto(ImageWebcamFrame);
+            checkPhoto.Show();
+            this.Close();
+            
+            //const string pathImageFolder = @"C:\\Users\FAS\"; //@"D:\\Photo\";
+            //string pathToImage = string.Format("{0}{1}.png", pathImageFolder, Guid.NewGuid());
 
-            PngBitmapEncoder encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create((BitmapSource)ImageWebcamFrame.Source));
-            using (FileStream fileStream = new FileStream(pathToImage, FileMode.Create))
-            {
-                encoder.Save(fileStream);
-            }
+            //PngBitmapEncoder encoder = new PngBitmapEncoder();
+            //encoder.Frames.Add(BitmapFrame.Create((BitmapSource)ImageWebcamFrame.Source));
+            //using (FileStream fileStream = new FileStream(pathToImage, FileMode.Create))
+            //{
+            //    encoder.Save(fileStream);
+            //}
         }
 
         private void Window_Closed(object sender, EventArgs e)
