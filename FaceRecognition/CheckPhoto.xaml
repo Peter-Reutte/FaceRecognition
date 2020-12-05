@@ -29,7 +29,7 @@
                         Click="ButtonPhoto_Click"></Button>
                     <Button Name="ButtonNext"  
                             Content="Next"
-                            FontSize="20px">
+                            FontSize="20px" Click="ButtonNext_Click">
                     </Button>
                 </StackPanel>
             </Grid>

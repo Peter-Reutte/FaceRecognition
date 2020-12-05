@@ -48,7 +48,7 @@ namespace FaceRecognition
         {
             webcam = new VideoCaptureDevice(availableWebcams[ComboBoxWebcams.SelectedIndex].MonikerString);
             webcam.Start();
-            webcam.NewFrame += new NewFrameEventHandler(webcam_NewFrame);
+            webcam.NewFrame += new NewFrameEventHandler(Webcam_NewFrame);
         }
 
         private void StopWebcam()
@@ -56,12 +56,12 @@ namespace FaceRecognition
             if (webcam != null && webcam.IsRunning)
             {
                 webcam.SignalToStop();
-                webcam.NewFrame -= new NewFrameEventHandler(webcam_NewFrame);
+                webcam.NewFrame -= new NewFrameEventHandler(Webcam_NewFrame);
                 webcam = null;
             }
         }
 
-        private void webcam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void Webcam_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -89,6 +89,7 @@ namespace FaceRecognition
         private void ButtonPhoto_Click(object sender, RoutedEventArgs e)
         {
             CheckPhoto checkPhoto = new CheckPhoto(ImageWebcamFrame);
+            StopWebcam();
             checkPhoto.Show();
             this.Close();
             
